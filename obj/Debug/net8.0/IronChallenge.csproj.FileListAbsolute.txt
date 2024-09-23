@@ -1,0 +1,14 @@
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\bin\Debug\net8.0\IronChallenge.exe
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\bin\Debug\net8.0\IronChallenge.deps.json
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\bin\Debug\net8.0\IronChallenge.runtimeconfig.json
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\bin\Debug\net8.0\IronChallenge.dll
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\bin\Debug\net8.0\IronChallenge.pdb
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.AssemblyInfoInputs.cache
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.AssemblyInfo.cs
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.csproj.CoreCompileInputs.cache
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.dll
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\refint\IronChallenge.dll
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.pdb
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.genruntimeconfig.cache
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\ref\IronChallenge.dll
