@@ -7,18 +7,9 @@ namespace OldPhonePadApp
     {
         static void Main(string[] args) //input method to allow user enter their own sequences
 {
-    while (true)
-    {
-        Console.WriteLine("Enter the key sequence (end with '#', or type 'exit' to quit):");
-        string input = Console.ReadLine();
-
-        if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-            break;
-
-        string output = OldPhonePad(input);
-        Console.WriteLine("Output: " + output);
-        Console.WriteLine();
-    }
+        Console.WriteLine("Old Phone Pad Simulator");
+        Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
+        string output = "";
 }
 
     public static string OldPhonePad(string input)
