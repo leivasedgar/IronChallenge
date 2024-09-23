@@ -1,16 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OldPhonePadApp
-{
-    class Program
-    {
-        static void Main(string[] args) //input method to allow user enter their own sequences
-{
-        Console.WriteLine("Old Phone Pad Simulator");
-        Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
-        string output = "";
-}
+namespace OldPhonePadApp{
+    class Program{
+        //input method to allow user enter their own sequences
+        static void Main(string[] args){ 
+            Console.WriteLine("Old Phone Pad Simulator");
+            Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");   
+            
+            string output = "";
+            char currentKey = '\0';
+            int pressCount = 0;
+            bool isRunning = true;
+            
+            while(isRunning){
+                if(Console.KeyAvailable){
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                    char ch = keyInfo.KeyChar;
+
+                    // exit with #
+                    if (ch == '#'){
+                        isRunning = false;
+                    }
+                }
+            }
+        }
 
     public static string OldPhonePad(string input)
     {
