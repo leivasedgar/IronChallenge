@@ -6,6 +6,7 @@ namespace OldPhonePadApp
 {
     class Program
     { 
+        // Mapping all the numbers to their characters
         private static readonly Dictionary<char, string> keyMap = new Dictionary<char, string>()
            {
             {'1', "&'("}, {'2', "ABC"}, {'3', "DEF"}, {'4', "GHI"}, {'5', "JKL"},
@@ -13,11 +14,13 @@ namespace OldPhonePadApp
         };
         static void Main(string[] args)
         {  
+            // Instructions for better experience
             Console.Clear();
             Console.WriteLine("Old Phone Pad Simulator");
             Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
             Console.WriteLine("Press 0 four times to exit.");
 
+            // Variables used
             string output = "";
             char currentKey = '\0';
             int pressCount = 0;
@@ -32,6 +35,7 @@ namespace OldPhonePadApp
                     ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                     char ch = keyInfo.KeyChar;
 
+                    // Custom exit sequence
                     if(ch == '0')
                     {
                         exitSequence += '0';
@@ -49,6 +53,7 @@ namespace OldPhonePadApp
                         exitSequence = "";
                     }
 
+                    // Using # to send/finalize current text
                     if (ch == '#')
                     {
                         if(currentKey != '\0' && pressCount > 0 )
@@ -65,10 +70,12 @@ namespace OldPhonePadApp
                             pressCount = 0;
                         }                        
                         
+                        // Shos the final text before allowing to continue typing
                         Console.WriteLine("Final text: " + output);  
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey(true);
 
+                        // Resets variables for the user to enter new text
                         output = "";
                         currentKey = '\0';
                         pressCount = 0;
@@ -78,6 +85,7 @@ namespace OldPhonePadApp
 
                     }
                     
+                    // Handles "backspace" with "*"
                     else if(ch == '*')
                     {
                         if (pressCount > 0)
@@ -125,6 +133,7 @@ namespace OldPhonePadApp
                 
                 else
                 {
+                    // Handles the 1 second pause
                     if(currentKey != '\0' && pressCount > 0)
                     {
                         TimeSpan timeSinceLastKeyPress = DateTime.Now - lastKeyPressTime;
@@ -153,6 +162,7 @@ namespace OldPhonePadApp
             Console.WriteLine("Shutting down...");
         }
 
+        // Updates the display/console to provide visual feedback on the character selected
         private static void UpdateDisplay(string output, char currentKey, int pressCount)
         {
             Console.Clear();
