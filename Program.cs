@@ -17,28 +17,43 @@ namespace OldPhonePadApp{
             {'9', "WXYZ"},
             {'0', " "}
         };
-        static void Main(string[] args){ 
-            // Some instructions to guide the user
+        static void Main(string[] args){  
+            
+            // Instructions
+            Console.Clear();
             Console.WriteLine("Old Phone Pad Simulator");
             Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
-            Console.WriteLine();   
-            
+            Console.WriteLine("Press 0 four times to exit.");
+
             // Variables used
             string output = "";
             char currentKey = '\0';
             int pressCount = 0;
             bool isRunning = true;
             DateTime lastKeyPressTime = DateTime.MinValue;
+            string exitSequence = ""; // Added to exit the program while typing 
 
             while(isRunning){
                 if(Console.KeyAvailable){
                     ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                     char ch = keyInfo.KeyChar;
 
+                    // Logic for the exitSequence "0000"
+                    if(ch == '0'){
+                        exitSequence += '0';
+                        if(exitSequence.Length >= 4){
+                            isRunning = false;
+                            break;
+                        }
+                    } else{
+                        exitSequence = ""; // Resetting the exit sequence in case of mistake
+                    }
+
                     // send with #
                     if (ch == '#'){
                         if(currentKey != '\0' && pressCount > 0 ){
                             string letters = keyMap[currentKey];
+                    
                             if (letters.Length > 0){
                                 int index = (pressCount - 1) % letters.Length;
                                 output += letters[index];
@@ -46,9 +61,25 @@ namespace OldPhonePadApp{
                             currentKey = '\0';
                             pressCount = 0;
                         }                        
-                        isRunning = false;
+                        
+                        // Showing final text
+                        Console.WriteLine("Final text: " + output);  
+                        
+                        // Waiting for user to continue (restart typing)
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey(true);
+                        
+                        // Reseting for new text
+                        output = "";
+                        currentKey = '\0';
+                        pressCount = 0;
+                        exitSequence = "";
+                        lastKeyPressTime = DateTime.MinValue;
+    
+                        // Update the display for the new input
+                        UpdateDisplay(output, currentKey, pressCount);
 
-                    } else if(ch == '*'){
+                    }else if(ch == '*'){
                         if (pressCount > 0){
                             // Discard current typing
                             currentKey = '\0';
@@ -97,18 +128,18 @@ namespace OldPhonePadApp{
                 Thread.Sleep(50);
             }
             Console.WriteLine();
-            Console.WriteLine("Final text: " + output);
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
+            Console.WriteLine("Shutting down...");
         }
 
         static void UpdateDisplay(string output, char currentKey, int pressCount){
-
-            // Clearing console to improve user experience
+            
+            
+            // Some instructions to guide the user
             Console.Clear();
             Console.WriteLine("Old Phone Pad Simulator");
             Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
-
+            Console.WriteLine("Press 0 four times to exit.");
+            
             string display = output;
 
             if(currentKey != '\0' && pressCount > 0){
@@ -119,6 +150,8 @@ namespace OldPhonePadApp{
                 }
             }
             Console.WriteLine("Current text: " + display);
+            
+            
         }
     }
 }
