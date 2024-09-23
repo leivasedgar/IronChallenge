@@ -12,3 +12,4 @@ C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\refint\IronChalleng
 C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.pdb
 C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.genruntimeconfig.cache
 C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\ref\IronChallenge.dll
+C:\Users\UNIT\Desktop\TESTING\IronChallenge\obj\Debug\net8.0\IronChallenge.sourcelink.json

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace OldPhonePadApp{
     class Program{ 
-        Dictionary<char, string> keyMap = new Dictionary<char, string>(){
+        // Mapping the numebers and their characters
+       static Dictionary<char, string> keyMap = new Dictionary<char, string>(){
             {'1', "&'("},
             {'2', "ABC"},
             {'3', "DEF"},
@@ -16,10 +18,12 @@ namespace OldPhonePadApp{
             {'0', " "}
         };
         static void Main(string[] args){ 
+            // Some instructions to guide the user
             Console.WriteLine("Old Phone Pad Simulator");
             Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
             Console.WriteLine();   
             
+            // Variables used
             string output = "";
             char currentKey = '\0';
             int pressCount = 0;
@@ -43,11 +47,12 @@ namespace OldPhonePadApp{
                             pressCount = 0;
                         }                        
                         isRunning = false;
+
                     } else if(ch == '*'){
                         if (pressCount > 0){
                             // Discard current typing
                             currentKey = '\0';
-                            pressCount =0;
+                            pressCount =0;                            
                         } else if (output.Length > 0){
                             // Removing last character from the string
                             output = output.Substring(0, output.Length - 1);
@@ -57,10 +62,11 @@ namespace OldPhonePadApp{
                             pressCount++;
                         } else{                            
                             if(currentKey != '\0' && pressCount > 0){
-                                string letter = keyMap[currentKey];
+                                string letters = keyMap[currentKey];
+
                                 if(letters.Length > 0 ){
-                                int index = (pressCount - 1) % letters.Length;
-                                output += letters[index];
+                                    int index = (pressCount - 1) % letters.Length;
+                                    output += letters[index];
                                 }
                             }
                             currentKey = ch;
@@ -74,8 +80,10 @@ namespace OldPhonePadApp{
                     // Adding 1 second pause logic
                     if(currentKey != '\0' && pressCount > 0){
                         TimeSpan timeSinceLastKeyPress = DateTime.Now - lastKeyPressTime;
+
                         if(timeSinceLastKeyPress.TotalSeconds >= 1){
                             string letters = keyMap[currentKey];
+
                             if (letters.Length > 0){
                                 int index = (pressCount - 1) % letters.Length;
                                 output += letters[index];
@@ -86,12 +94,21 @@ namespace OldPhonePadApp{
                         }
                     }
                 }
+                Thread.Sleep(50);
             }
-
-            // - 
+            Console.WriteLine();
+            Console.WriteLine("Final text: " + output);
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
 
         static void UpdateDisplay(string output, char currentKey, int pressCount){
+
+            // Clearing console to improve user experience
+            Console.Clear();
+            Console.WriteLine("Old Phone Pad Simulator");
+            Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
+
             string display = output;
 
             if(currentKey != '\0' && pressCount > 0){
@@ -101,7 +118,7 @@ namespace OldPhonePadApp{
                     display += letters[index];
                 }
             }
-            Console.WriteLine("Result: " + display);
+            Console.WriteLine("Current text: " + display);
         }
     }
 }
