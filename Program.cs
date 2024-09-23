@@ -23,7 +23,8 @@ namespace OldPhonePadApp{
             char currentKey = '\0';
             int pressCount = 0;
             bool isRunning = true;
-            
+            DateTime lastKeyPressTime = DateTime.MinValue;
+
             while(isRunning){
                 if(Console.KeyAvailable){
                     ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -57,12 +58,27 @@ namespace OldPhonePadApp{
                             if(currentKey != '\0' && pressCount > 0){
                                 string letter = keyMap[currentKey];
                                 if(letters.Length > 0 ){
-                                    int index = (pressCount - 1) % letters.Length;
+                                int index = (pressCount - 1) % letters.Length;
                                 output += letters[index];
                                 }
                             }
                             currentKey = ch;
                             pressCount = 1;
+                        }
+                        lastKeyPressTime = DateTime.Now;
+                    }
+                } else{
+                    // Adding 1 second pause logic
+                    if(currentKey != '\0' && pressCount > 0){
+                        TimeSpan timeSinceLastKeyPress = DateTime.Now - lastKeyPressTime;
+                        if(timeSinceLastKeyPress.TotalSeconds >= 1){
+                            string letters = keyMap[currentKey];
+                            if (letters.Length > 0){
+                                int index = (pressCount - 1) % letters.Length;
+                                output += letters[index];
+                            }
+                            currentKey = '\0';
+                            pressCount = 0;
                         }
                     }
                 }
