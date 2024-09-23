@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IronChallenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b919194b1ef241cff1dca1d31806f75166f43e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c34d19d2a5237d2d453e0ab09e30dbd141358a68")]
 [assembly: System.Reflection.AssemblyProductAttribute("IronChallenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IronChallenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
