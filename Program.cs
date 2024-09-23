@@ -17,7 +17,8 @@ namespace OldPhonePadApp{
         };
         static void Main(string[] args){ 
             Console.WriteLine("Old Phone Pad Simulator");
-            Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");   
+            Console.WriteLine("Press number keys to  type. Press '#' to  send, '*' to backspace");
+            Console.WriteLine();   
             
             string output = "";
             char currentKey = '\0';
@@ -67,6 +68,8 @@ namespace OldPhonePadApp{
                         }
                         lastKeyPressTime = DateTime.Now;
                     }
+                    UpdateDisplay(output, currentKey, pressCount);
+
                 } else{
                     // Adding 1 second pause logic
                     if(currentKey != '\0' && pressCount > 0){
@@ -79,102 +82,26 @@ namespace OldPhonePadApp{
                             }
                             currentKey = '\0';
                             pressCount = 0;
+                            UpdateDisplay(output, currentKey, pressCount);
                         }
                     }
                 }
             }
+
+            // - 
         }
 
-    public static string OldPhonePad(string input)
-    {
-        if (string.IsNullOrEmpty(input))
-            return "";
+        static void UpdateDisplay(string output, char currentKey, int pressCount){
+            string display = output;
 
-        // Mapping of the numbers and their corresponding characters
-        Dictionary<char, string> keyMap = new Dictionary<char, string>()
-        {
-            {'1', "&'("},
-            {'2', "ABC"},
-            {'3', "DEF"},
-            {'4', "GHI"},
-            {'5', "JKL"},
-            {'6', "MNO"},
-            {'7', "PQRS"},
-            {'8', "TUV"},
-            {'9', "WXYZ"},
-            {'0', " "}
-        };
-
-        // Variables used
-        string output = "";
-        char currentKey = '\0';
-        int pressCount = 0;
-
-        foreach (char ch in input)
-        {
-            if (ch == '#')
-            {
-                // Confirm any pending character
-                if (currentKey != '\0' && pressCount > 0)
-                {
-                    string letters = keyMap[currentKey];
-                    if (letters.Length > 0)
-                    {
-                        int index = (pressCount - 1) % letters.Length; //logic to which letter was selected
-                        output += letters[index];
-                    }
-                    // Reset current key and press count
-                    currentKey = '\0';
-                    pressCount = 0;
-                }
-                break;
-            }
-            else if (ch == '*')
-            {
-                output = output.Substring(0, output.Length - 1);
-            }
-            else if (ch == '0')
-            {
-                // Confirm any pending character
-                if (currentKey != '\0' && pressCount > 0)
-                {
-                    string letters = keyMap[currentKey];
-                    if (letters.Length > 0)
-                    {
-                        int index = (pressCount - 1) % letters.Length; //logic to which letter was selected
-                        output += letters[index];
-                    }
-                    // Reset current key and press count
-                    currentKey = '\0';
-                    pressCount = 0;
+            if(currentKey != '\0' && pressCount > 0){
+                string letters = keyMap[currentKey];
+                if(letters.Length > 0){
+                    int index = (pressCount - 1) % letters.Length;
+                    display += letters[index];
                 }
             }
-            else if (char.IsDigit(ch))
-            {
-                if (currentKey == ch)
-                {
-                    // Same key pressed again
-                    pressCount++;
-                }
-                else
-                {
-                    // Confirm the previous character
-                    if (currentKey != '\0' && pressCount > 0)
-                    {
-                        string letters = keyMap[currentKey];
-                        if (letters.Length > 0)
-                        {
-                            int index = (pressCount - 1) % letters.Length; //logic to which letter was selected
-                            output += letters[index];
-                        }
-                    }
-                    // Start new key press
-                    currentKey = ch;
-                    pressCount = 1;
-                }
-            }
+            Console.WriteLine("Result: " + display);
         }
-        return output;
     }
-}
 }
